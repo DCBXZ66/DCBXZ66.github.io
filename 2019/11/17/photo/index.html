@@ -5,19 +5,22 @@
   
 
   
-  <title>photo | dcbxz</title>
+  <title>写篇文章记录一下HEXO插入图片的过程 | dcbxz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="为什么这么难啊，插个图片而已咯">
+  <meta name="description" content="菜鸟一枚，插入图片的时候走了不少弯路，写篇blog记录一下。第一步：安装插件，在hexo根目录打开Git Bash,执行    npm install hexo-asset-image –save第二步：打开hexo的配置文件config.yml    找到post_asset_folder，把这个选项从false改成true第三步：打开&#x2F;node_modules&#x2F;hexo-asset-image">
+<meta name="keywords" content="blog">
 <meta property="og:type" content="article">
-<meta property="og:title" content="photo">
+<meta property="og:title" content="写篇文章记录一下HEXO插入图片的过程">
 <meta property="og:url" content="https:&#x2F;&#x2F;dcbxz66.github.io&#x2F;2019&#x2F;11&#x2F;17&#x2F;photo&#x2F;index.html">
 <meta property="og:site_name" content="dcbxz">
-<meta property="og:description" content="为什么这么难啊，插个图片而已咯">
+<meta property="og:description" content="菜鸟一枚，插入图片的时候走了不少弯路，写篇blog记录一下。第一步：安装插件，在hexo根目录打开Git Bash,执行    npm install hexo-asset-image –save第二步：打开hexo的配置文件config.yml    找到post_asset_folder，把这个选项从false改成true第三步：打开&#x2F;node_modules&#x2F;hexo-asset-image">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https:&#x2F;&#x2F;dcbxz66.github.io&#x2F;2019&#x2F;11&#x2F;17&#x2F;photo&#x2F;head.jpeg">
-<meta property="og:updated_time" content="2019-11-17T13:16:36.000Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;dcbxz66.github.io&#x2F;.io&#x2F;&#x2F;%E6%96%87%E4%BB%B6%E5%90%8D">
+<meta property="og:image" content="https:&#x2F;&#x2F;dcbxz66.github.io&#x2F;.io&#x2F;&#x2F;head.jpeg">
+<meta property="og:image" content="https:&#x2F;&#x2F;dcbxz66.github.io&#x2F;.io&#x2F;&#x2F;head.jpeg">
+<meta property="og:updated_time" content="2019-11-17T13:45:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;dcbxz66.github.io&#x2F;2019&#x2F;11&#x2F;17&#x2F;photo&#x2F;head.jpeg">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;dcbxz66.github.io&#x2F;.io&#x2F;&#x2F;%E6%96%87%E4%BB%B6%E5%90%8D">
   
     <link rel="alternate" href="/atom.xml" title="dcbxz" type="application/atom+xml">
   
@@ -78,7 +81,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      photo
+      写篇文章记录一下HEXO插入图片的过程
     </h1>
   
 
@@ -86,14 +89,57 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>为什么这么难啊，插个图片而已咯<br><img src="/2019/11/17/photo/head.jpeg" alt="aaa"></p>
+        <p>菜鸟一枚，插入图片的时候走了不少弯路，写篇blog记录一下。<br>第一步：安装插件，在hexo根目录打开Git Bash,执行<br>    npm install hexo-asset-image –save<br>第二步：打开hexo的配置文件<em>config.yml<br>    找到post_asset_folder，把这个选项从false改成true<br>第三步：打开/node_modules/hexo-asset-image/index.js，打开/node_modules/hexo-asset-image/index.js，将内容更换为下面的代码<br>（不知道是否为必须，但在此感谢Ericam</em> 大神：<a href="https://blog.csdn.net/xjm850552586）" target="_blank" rel="noopener">https://blog.csdn.net/xjm850552586）</a><br>‘use strict’;<br>var cheerio = require(‘cheerio’);</p>
+<p>// <a href="http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in-a-string" target="_blank" rel="noopener">http://stackoverflow.com/questions/14480345/how-to-get-the-nth-occurrence-in-a-string</a><br>function getPosition(str, m, i) {<br>  return str.split(m, i).join(m).length;<br>}</p>
+<p>var version = String(hexo.version).split(‘.’);<br>hexo.extend.filter.register(‘after_post_render’, function(data){<br>  var config = hexo.config;<br>  if(config.post_asset_folder){<br>        var link = data.permalink;<br>    if(version.length &gt; 0 &amp;&amp; Number(version[0]) == 3)<br>       var beginPos = getPosition(link, ‘/‘, 1) + 1;<br>    else<br>       var beginPos = getPosition(link, ‘/‘, 3) + 1;<br>    // In hexo 3.1.1, the permalink of “about” page is like “…/about/index.html”.<br>    var endPos = link.lastIndexOf(‘/‘) + 1;<br>    link = link.substring(beginPos, endPos);</p>
+<pre><code>var toprocess = [&apos;excerpt&apos;, &apos;more&apos;, &apos;content&apos;];
+for(var i = 0; i &lt; toprocess.length; i++){
+  var key = toprocess[i];
+
+  var $ = cheerio.load(data[key], {
+    ignoreWhitespace: false,
+    xmlMode: false,
+    lowerCaseTags: false,
+    decodeEntities: false
+  });
+
+  $(&apos;img&apos;).each(function(){
+    if ($(this).attr(&apos;src&apos;)){
+        // For windows style path, we replace &apos;\&apos; to &apos;/&apos;.
+        var src = $(this).attr(&apos;src&apos;).replace(&apos;\\&apos;, &apos;/&apos;);
+        if(!/http[s]*.*|\/\/.*/.test(src) &amp;&amp;
+           !/^\s*\//.test(src)) {
+          // For &quot;about&quot; page, the first part of &quot;src&quot; can&apos;t be removed.
+          // In addition, to support multi-level local directory.
+          var linkArray = link.split(&apos;/&apos;).filter(function(elem){
+            return elem != &apos;&apos;;
+          });
+          var srcArray = src.split(&apos;/&apos;).filter(function(elem){
+            return elem != &apos;&apos; &amp;&amp; elem != &apos;.&apos;;
+          });
+          if(srcArray.length &gt; 1)
+            srcArray.shift();
+          src = srcArray.join(&apos;/&apos;);
+          $(this).attr(&apos;src&apos;, config.root + link + src);
+          console.info&amp;&amp;console.info(&quot;update link as:--&gt;&quot;+config.root + link + src);
+        }
+    }else{
+        console.info&amp;&amp;console.info(&quot;no src attr, skipped...&quot;);
+        console.info&amp;&amp;console.info($(this));
+    }
+  });
+  data[key] = $.html();
+}</code></pre><p>  }<br>});</p>
+<p>第四步：现在就可以插入图片了，比如我hexo new post photo之后<br>就在source/_posts生成photo.md文件和photo文件夹，我们把要插入的图片复制到photo文件夹内，<br>在.md文件里面按双引号格式写：”<img src="/.io//%E6%96%87%E4%BB%B6%E5%90%8D" alt="这是代替图片的文字，随便写">“，记得不要双引号啊！！！<br>例如（我的图片的文件名为head.jpeg）：”<img src="/.io//head.jpeg" alt="这是代替图片的文字，随便写">“<br><img src="/.io//head.jpeg" alt="这是代替图片的文字，随便写"><br>然后就……完事了。<br>参考链接：<br><a href="https://blog.csdn.net/xjm850552586/article/details/84101345" target="_blank" rel="noopener">https://blog.csdn.net/xjm850552586/article/details/84101345</a><br><a href="https://blog.csdn.net/qq_38148394/article/details/79997971" target="_blank" rel="noopener">https://blog.csdn.net/qq_38148394/article/details/79997971</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://dcbxz66.github.io/2019/11/17/photo/" data-id="ck330ytja0000j8ve11903hxt" class="article-share-link">Share</a>
+      <a data-url="https://dcbxz66.github.io/2019/11/17/photo/" data-id="ck331z7zt00007sve14ta7xk3" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
+
     </footer>
   </div>
   
@@ -119,9 +165,23 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/blog/" rel="tag">blog</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/blog/" style="font-size: 10px;">blog</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
@@ -140,7 +200,7 @@
       <ul>
         
           <li>
-            <a href="/2019/11/17/photo/">photo</a>
+            <a href="/2019/11/17/photo/">写篇文章记录一下HEXO插入图片的过程</a>
           </li>
         
           <li>
