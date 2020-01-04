@@ -12,3 +12,4 @@ Disallow: /vendors/
 Disallow: /fancybox/
 
 Sitemap: http://dcbxz.top/sitemap.xml
+Sitemap: http://dcbxz.top/baidusitemap.xml
