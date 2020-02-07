@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>win10下bat脚本自动启动（超简单，亲测可用）</title>
+    <url>/2020/02/07/win-autoboot/</url>
+    <content><![CDATA[<h1 id="把bat脚本放入（或者把快捷方式放进去也可以）："><a href="#把bat脚本放入（或者把快捷方式放进去也可以）：" class="headerlink" title="把bat脚本放入（或者把快捷方式放进去也可以）："></a>把bat脚本放入（或者把快捷方式放进去也可以）：</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp</span><br></pre></td></tr></table></figure>
+<p><img src="/2020/02/07/win-autoboot/a.png" alt="如图"></p>
+<h1 id="亲测可用（2020年2月7日）"><a href="#亲测可用（2020年2月7日）" class="headerlink" title="亲测可用（2020年2月7日）"></a>亲测可用（2020年2月7日）</h1>]]></content>
+      <categories>
+        <category>others</category>
+      </categories>
+      <tags>
+        <tag>others</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>flashlight</title>
     <url>/2020/01/20/flashlight/</url>
     <content><![CDATA[<h2 id="移步↓↓↓"><a href="#移步↓↓↓" class="headerlink" title="移步↓↓↓"></a>移步↓↓↓</h2><h2 id="https-github-com-DCBXZ66-flashlight"><a href="#https-github-com-DCBXZ66-flashlight" class="headerlink" title="https://github.com/DCBXZ66/flashlight"></a><a href="https://github.com/DCBXZ66/flashlight" target="_blank" rel="noopener">https://github.com/DCBXZ66/flashlight</a></h2>]]></content>
