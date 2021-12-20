@@ -11,5 +11,5 @@ Disallow: /fonts/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: http://dcbxz.top/sitemap.xml
-Sitemap: http://dcbxz.top/baidusitemap.xml
+Sitemap: http://dcbxz.github.io/sitemap.xml
+Sitemap: http://dcbxz.github.io/baidusitemap.xml
